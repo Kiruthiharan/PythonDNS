@@ -61,6 +61,6 @@ while 1:
     #print(len(msg))
     print(msg)
     res=buildResponse(msg)
-    serverSocket.sendto(res,address)
+    #serverSocket.sendto(res,address)
     
     
