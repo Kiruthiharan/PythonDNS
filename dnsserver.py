@@ -1,10 +1,12 @@
-# -*- coding: utf-8 -*-
-
 import socket
 import struct
+import sys
+from pathlib import Path
 
-port=8080
-ip='127.0.0.1'
+args=sys.argv
+
+ip=str(args[1])
+port=int(args[2])
 
 serverSocket=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -12,7 +14,10 @@ serverSocket.bind((ip,port))
 hosts={}
 
 def readHost():
-    datafile = open("dns-master.txt",'r')
+    print(Path.cwd())
+    filepath=str(Path.cwd()) + "\\" + "dns-master.txt";
+    print(filepath)
+    datafile = open(str(filepath),'r')
 
     if datafile:
         print("open")
@@ -61,6 +66,6 @@ while 1:
     #print(len(msg))
     print(msg)
     res=buildResponse(msg)
-    #serverSocket.sendto(res,address)
+    serverSocket.sendto(res,address)
     
     
