@@ -1,1 +1,0 @@
-# Example Master File for DNS Programming Assignment# dns-master.txt# Domain student.test# List IP addresses of all hosts in the domainhost1.student.test A IN 3600 192.168.10.1host2.student.test A IN 3600 192.168.20.2host3.student.test A IN 3600 192.168.30.3host99.student.test A IN 3600 192.168.90.9host123.student.test A IN 3600 192.168.120.123
