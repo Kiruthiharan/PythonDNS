@@ -14,27 +14,28 @@ serverSocket.bind((ip,port))
 hosts={}
 
 def readHost():
-    print(Path.cwd())
+    #print(Path.cwd())
     filepath=str(Path.cwd()) + "\\" + "dns-master.txt";
-    print(filepath)
+    #print(filepath)
     datafile = open(str(filepath),'r')
 
     if datafile:
-        print("open")
+        #print("open")
         for line in datafile:
             if line[0]!='#':
-                print(line)
+                #print(line)
                 data=line.split(" ")
                 hosts[data[0]]=data[4]
-        print(hosts)        
+        #print(hosts)        
     else :
-        print("Error! cannot open dns_master.txt")
-        
+        #print("Error! cannot open dns_master.txt")
+        pass
+    
 readHost()
 
 def buildResponse(data):
     question=data[5].decode("utf-8").split(" ") 
-    print (question[0])
+    #print (question[0])
     
     mType=2
     mIdent=data[2]
@@ -44,8 +45,8 @@ def buildResponse(data):
     Answer=''
     
     if (qSelect in hosts.keys()):
-        Answer=(qSelect+" A IN "+hosts[qSelect]).encode("utf-8")
-        print(Answer)
+        Answer=(qSelect+" A IN 3600 "+hosts[qSelect]).encode("utf-8")
+        #print(Answer)
         rCode=0
         aLen=len(Answer)
     else:
@@ -60,12 +61,13 @@ def buildResponse(data):
 
 
 while 1:
+    print("Server is running....")
     data,address=serverSocket.recvfrom(512)
     #print(len(data))
     msg=struct.unpack("hhihh32s",data)
     #print(len(msg))
-    print(msg)
+    #print(msg)
     res=buildResponse(msg)
-    serverSocket.sendto(res,address)
+    #serverSocket.sendto(res,address)
     
     

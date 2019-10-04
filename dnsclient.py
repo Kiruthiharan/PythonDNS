@@ -46,7 +46,7 @@ while(time_out_count<3):
             print("Message ID: ", res[2])
             print("Question Length: ", res[3], " bytes")
             print("Answer Length: ", res[4], " bytes")
-            print("Answer: host-not-exist.student.test A IN")
+            print("Answer: ",res[5].decode("utf-8")," A IN")
         else:
             print("Received Response from ",address[0],", ",address[1],":")
             print("Return Code: ", res[1]," (No errors)")
